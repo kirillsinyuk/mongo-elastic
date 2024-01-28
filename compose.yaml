@@ -1,0 +1,17 @@
+services:
+  elasticsearch:
+    image: 'bitnami/elasticsearch:latest'
+    environment:
+      - 'ELASTICSEARCH_USERNAME=elastic'
+      - 'ELASTICSEARCH_PASSWORD=secretpwd'
+      - 'discovery.type=single-node'
+    ports:
+      - '9200:9200'
+  mongodb:
+    image: 'mongo:latest'
+    environment:
+      - 'MONGO_INITDB_DATABASE=order'
+      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    ports:
+      - '27017:27017'
