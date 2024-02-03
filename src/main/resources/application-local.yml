@@ -2,3 +2,6 @@ spring:
   elasticsearch:
     username: elastic
     password: secretpwd
+
+deal:
+  save.batch.size: 50
