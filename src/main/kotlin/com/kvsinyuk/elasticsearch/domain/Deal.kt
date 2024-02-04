@@ -9,18 +9,18 @@ import java.time.LocalDate
 @Document
 class Deal {
 
-    private lateinit var id: ObjectId
+    lateinit var id: ObjectId
 
-    private var number: String? = null
+    lateinit var number: String
 
-    private lateinit var date: LocalDate
+    lateinit var date: LocalDate
 
-    private var sellers: List<Seller> = emptyList()
+    var sellers: List<Seller> = emptyList()
 
-    private var buyers: List<Buyer> = emptyList()
+    var buyers: List<Buyer> = emptyList()
 
-    private var guarantors: List<Guarantor> = emptyList()
+    var guarantors: List<Guarantor> = emptyList()
 
     @CreatedDate
-    private lateinit var createdAt: Instant
+    lateinit var createdAt: Instant
 }
