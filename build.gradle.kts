@@ -27,6 +27,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 
 	implementation("com.github.curious-odd-man:rgxgen:1.4")

@@ -12,9 +12,7 @@ class GenerateDataController(
 ) {
 
     @PostMapping("/generate")
-    fun generateRandomData(
-        @RequestParam dealAmount: Int
-    ) {
+    fun generateRandomData(@RequestParam dealAmount: Int) {
         logger.info { "Received request for $dealAmount deals generation" }
         generateDealsUseCase.generateDeals(dealAmount)
     }

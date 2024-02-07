@@ -2,3 +2,6 @@ spring:
   elasticsearch:
     username: elastic
     password: secretpwd
+
+server:
+  port: 8888

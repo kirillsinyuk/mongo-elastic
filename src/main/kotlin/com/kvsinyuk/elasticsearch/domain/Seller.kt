@@ -4,7 +4,7 @@ import java.util.UUID
 
 class Seller {
 
-    val id: UUID = UUID.randomUUID()
+    val id: String = UUID.randomUUID().toString()
 
     lateinit var name: Name
 
