@@ -53,9 +53,9 @@ fun createRandomGuarantors(guarantorsAmount: Int) =
 
 fun createRandomName() =
     Name(
-        firstName = nameList[(0..nameList.size).random()],
-        lastName = nameList[(0..nameList.size).random()],
-        middleName = nameList[(0..nameList.size).random()]
+        firstName = nameList[nameList.indices.random()],
+        lastName = nameList[nameList.indices.random()],
+        middleName = nameList[nameList.indices.random()]
     )
 
 fun createRandomContacts() =
@@ -66,7 +66,7 @@ fun createRandomContacts() =
 
 
 private val dealNumberPatternGenerator = RgxGen("TEST-\\d{2}-\\d{5}")
-private val emailPatternGenerator = RgxGen("[a-z]{5}@[a-z]{4}.com")
+private val emailPatternGenerator = RgxGen("[a-z]{5}@[a-z]{4}\\.com")
 private val phonePatternGenerator = RgxGen("7\\d{10}")
 private const val hundredYears = 100 * 365L
 private val nameList = arrayOf(
