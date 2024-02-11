@@ -1,4 +1,4 @@
-mongo-url = "mongodb://root:secret@mongodb:27017"
+mongo-url = "mongodb://mongo1:27017/?replicaSet=rs0"
 
 change-stream-namespaces = [""]
 
