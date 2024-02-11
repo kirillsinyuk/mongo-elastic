@@ -1,0 +1,23 @@
+MongoDb + Elasticsearch
+------------------------
+
+This is a pet project for the experimental usage of MongoDb as a primary
+database and Elasticsearch as a search engine.
+
+Why?
+~~~
+
+The main idea for this combination stems from the limited options for text search in MongoDb.
+
+I faced this problem while working on one project.
+All that MongoDb proposes in addition to classic indexes is one *TextIndex* on collection without any option to tune it.
+It becomes a total mess when you need a multifield search with default sort by creationTime,
+because MongoDb will have to find all results for every field, merge them, and sort.
+So the more data you have, the longer it`ll take. I couldn`t find a way to optimize it.
+
+How?
+~~~
+
+It brought me to the idea that I could use another database that was made for text search.
+The main problem was how to sync the data between them.
+And this is where https://rwynn.github.io/monstache-site/[Monstache^] takes action.
