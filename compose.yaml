@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   elasticsearch:
     image: 'bitnami/elasticsearch:latest'
@@ -7,19 +9,27 @@ services:
       - 'discovery.type=single-node'
     ports:
       - '9200:9200'
-  mongodb:
-    image: 'mongo:latest'
+
+  mongo1:
+    image: mongo:7.0
+    command: [ "--replSet", "rs0", "--bind_ip_all", "--port", "27017" ]
     environment:
       MONGO_INITDB_DATABASE: order
-      MONGO_INITDB_ROOT_PASSWORD: secret
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_AUTH_SOURCE: admin
-      MONGO_BIND_IP: "0.0.0.0"
-      MONGO_REPLICA_SET_NAME: rs0
-      MONGO_REPLICAS: mongodb:27017
-      MONGO_REPLICA_SET_MEMBERS: "[{'_id':0,'host':'mongodb:27017','priority':1}]"
     ports:
-      - '27017:27017'
+      - 27017:27017
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
+    volumes:
+      - "mongo1_data:/data/db"
+      - "mongo1_config:/data/configdb"
+
   monstache:
     image: rwynn/monstache:latest
     working_dir: /app
@@ -27,9 +37,13 @@ services:
     volumes:
       - $PWD/monstache.config.toml:/app/monstache.config.toml
     depends_on:
-      - mongodb
+      - mongo1
       - elasticsearch
     labels:
       org.springframework.boot.readiness-check.tcp.disable: true
     ports:
       - '8081:8081'
+
+volumes:
+  mongo1_data:
+  mongo1_config:
