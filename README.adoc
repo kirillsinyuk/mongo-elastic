@@ -1,3 +1,4 @@
+:imagesdir: ./docs
 MongoDb + Elasticsearch
 ------------------------
 
@@ -21,3 +22,5 @@ How?
 It brought me to the idea that I could use another database that was made for text search.
 The main problem was how to sync the data between them.
 And this is where https://rwynn.github.io/monstache-site/[Monstache^] takes action.
+
+image::schema.png[width=500]

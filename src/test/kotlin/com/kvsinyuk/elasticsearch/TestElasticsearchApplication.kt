@@ -6,8 +6,10 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.boot.with
 import org.springframework.context.annotation.Bean
 import org.testcontainers.containers.MongoDBContainer
+import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy
 import org.testcontainers.elasticsearch.ElasticsearchContainer
 import org.testcontainers.utility.DockerImageName
+import java.time.Duration
 
 @TestConfiguration(proxyBeanMethods = false)
 class TestElasticsearchApplication {
@@ -15,7 +17,16 @@ class TestElasticsearchApplication {
 	@Bean
 	@ServiceConnection
 	fun elasticsearchContainer(): ElasticsearchContainer {
-		return ElasticsearchContainer(DockerImageName.parse("bitnami/elasticsearch:latest"))
+		return ElasticsearchContainer(
+			DockerImageName.parse("bitnami/elasticsearch:latest")
+				.asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch")
+		)
+			.also {
+				it.setWaitStrategy(
+					LogMessageWaitStrategy()
+						.withRegEx(".*started.*").withStartupTimeout(Duration.ofMinutes(3))
+				)
+			}
 	}
 
 	@Bean

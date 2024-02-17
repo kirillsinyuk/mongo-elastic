@@ -7,14 +7,16 @@ import com.kvsinyuk.elasticsearch.domain.Deal
 import com.kvsinyuk.elasticsearch.domain.Guarantor
 import com.kvsinyuk.elasticsearch.domain.Name
 import com.kvsinyuk.elasticsearch.domain.Seller
-import java.time.LocalDate
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.concurrent.ThreadLocalRandom
 
 fun generateDeal(): Deal {
     return Deal()
         .apply {
             number = dealNumberPatternGenerator.generate()
-            date = LocalDate.ofEpochDay(ThreadLocalRandom.current().nextLong(-hundredYears, hundredYears))
+            date = LocalDateTime.ofInstant(Instant.ofEpochSecond(ThreadLocalRandom.current().nextLong(-hundredYears, hundredYears)), ZoneId.systemDefault())
             sellers = createRandomSellers((0 until 10).random())
             buyers = createRandomBuyer((0 until 10).random())
             guarantors = createRandomGuarantors((0 until 3).random())

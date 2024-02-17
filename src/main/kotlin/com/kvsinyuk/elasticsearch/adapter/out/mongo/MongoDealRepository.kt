@@ -4,4 +4,4 @@ import com.kvsinyuk.elasticsearch.domain.Deal
 import org.bson.types.ObjectId
 import org.springframework.data.mongodb.repository.MongoRepository
 
-interface DealRepository : MongoRepository<Deal, ObjectId>
+interface MongoDealRepository : MongoRepository<Deal, ObjectId>
