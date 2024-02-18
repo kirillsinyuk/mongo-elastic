@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class SearchDealsUseCaseImpl(
-    private val dealRepository: ElasticDealRepository
-): SearchDealsUseCase {
-
-    override fun searchDeals(search: String, page: Pageable) =
-        dealRepository.searchAll(search, page)
+    private val dealRepository: ElasticDealRepository,
+) : SearchDealsUseCase {
+    override fun searchDeals(
+        search: String,
+        page: Pageable,
+    ) = dealRepository.searchAll(search, page)
 }

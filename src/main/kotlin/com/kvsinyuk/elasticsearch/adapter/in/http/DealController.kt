@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class DealController(
-    private val searchDealsUseCase: SearchDealsUseCase
+    private val searchDealsUseCase: SearchDealsUseCase,
 ) {
-
     @GetMapping("/deals")
-    fun generateRandomData(@RequestParam search: String, pageable: Pageable): Page<Deal> {
+    fun generateRandomData(
+        @RequestParam search: String,
+        pageable: Pageable,
+    ): Page<Deal> {
         logger.info { "Received request for search deals with $search" }
         return searchDealsUseCase.searchDeals(search, pageable)
     }
 
-    companion object: KLogging()
+    companion object : KLogging()
 }

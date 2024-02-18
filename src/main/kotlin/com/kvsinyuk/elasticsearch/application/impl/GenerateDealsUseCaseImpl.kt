@@ -11,14 +11,13 @@ import org.springframework.stereotype.Component
 
 @Component
 class GenerateDealsUseCaseImpl(
-    private val dealRepository: MongoDealRepository
-): GenerateDealsUseCase {
-
+    private val dealRepository: MongoDealRepository,
+) : GenerateDealsUseCase {
     @Value("\${generator.batch.count}")
     private var batchCount: Int = 20
 
     override fun generateDeals(dealAmount: Int) {
-        for (i in dealAmount downTo 0 step batchCount) {
+        for (i in 0 until dealAmount step batchCount) {
             CoroutineScope(Dispatchers.Default).launch {
                 (0 until batchCount)
                     .map { generateDeal() }
