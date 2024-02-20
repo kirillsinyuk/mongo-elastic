@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class GenerateDataController(
-    private val generateDealsUseCase: GenerateDealsUseCase
+    private val generateDealsUseCase: GenerateDealsUseCase,
 ) {
-
     @PostMapping("/generate")
-    fun generateRandomData(@RequestParam dealAmount: Int) {
+    fun generateRandomData(
+        @RequestParam dealAmount: Int,
+    ) {
         logger.info { "Received request for $dealAmount deals generation" }
         generateDealsUseCase.generateDeals(dealAmount)
     }
 
-    companion object: KLogging()
+    companion object : KLogging()
 }

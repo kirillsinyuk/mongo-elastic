@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @EnableMongoAuditing
 @EnableMongoRepositories(basePackages = ["com.kvsinyuk.elasticsearch.adapter.out.mongo"])
-@ComponentScan(basePackages = [ "com.kvsinyuk.elasticsearch" ])
+@ComponentScan(basePackages = ["com.kvsinyuk.elasticsearch"])
 class MongoConfiguration

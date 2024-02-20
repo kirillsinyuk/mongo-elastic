@@ -5,6 +5,5 @@ data class Name(
     val lastName: String,
     val middleName: String?,
 ) {
-
     fun getFullName() = "$lastName $firstName" + (middleName?.let { " $it" } ?: "")
 }

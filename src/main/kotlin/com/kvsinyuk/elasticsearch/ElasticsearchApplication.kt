@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ElasticsearchApplication
 
 fun main(args: Array<String>) {
-	runApplication<ElasticsearchApplication>(*args)
+    runApplication<ElasticsearchApplication>(*args)
 }

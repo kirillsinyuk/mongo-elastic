@@ -7,8 +7,9 @@ import org.springframework.data.elasticsearch.annotations.Query
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 interface ElasticDealRepository : ElasticsearchRepository<Deal, String> {
-
     @Query(query = "{ \"multi_match\" : {\"query\" : \"?0\" }}")
-    //@Query(query = "\"query\": {\"bool\": {\"must\": [{ \"match\": {\"userId\": ?0}}]}}")
-    fun searchAll(search: String, page: Pageable): Page<Deal>
+    fun searchAll(
+        search: String,
+        page: Pageable,
+    ): Page<Deal>
 }
