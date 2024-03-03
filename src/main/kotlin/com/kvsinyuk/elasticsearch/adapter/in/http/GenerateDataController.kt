@@ -11,7 +11,7 @@ class GenerateDataController(
     private val generateDealsUseCase: GenerateDealsUseCase,
 ) {
     @PostMapping("/generate")
-    fun generateRandomData(
+    suspend fun generateRandomData(
         @RequestParam dealAmount: Int,
     ) {
         logger.info { "Received request for $dealAmount deals generation" }
