@@ -5,8 +5,11 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
 interface SearchDealsUseCase {
-    fun searchDeals(
-        search: String,
-        page: Pageable,
-    ): Page<Deal>
+    fun searchDeals(command: SearchCommand): Page<Deal>
+
+    data class SearchCommand(
+        val search: String,
+        val databaseType: String,
+        val page: Pageable,
+    )
 }
