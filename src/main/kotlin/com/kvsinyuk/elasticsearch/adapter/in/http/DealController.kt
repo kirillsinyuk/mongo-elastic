@@ -1,6 +1,7 @@
 package com.kvsinyuk.elasticsearch.adapter.`in`.http
 
 import com.kvsinyuk.elasticsearch.application.port.SearchDealsUseCase
+import com.kvsinyuk.elasticsearch.application.port.SearchDealsUseCase.SearchCommand
 import com.kvsinyuk.elasticsearch.domain.Deal
 import mu.KLogging
 import org.springframework.data.domain.Page
@@ -14,12 +15,14 @@ class DealController(
     private val searchDealsUseCase: SearchDealsUseCase,
 ) {
     @GetMapping("/deals")
-    fun generateRandomData(
+    fun getDeals(
         @RequestParam search: String,
+        @RequestParam database: String = "elasticsearch",
         pageable: Pageable,
     ): Page<Deal> {
         logger.info { "Received request for search deals with $search" }
-        return searchDealsUseCase.searchDeals(search, pageable)
+        val command = SearchCommand(search, database, pageable)
+        return searchDealsUseCase.searchDeals(command)
     }
 
     companion object : KLogging()
