@@ -1,1 +1,4 @@
 generator.batch.count: 100
+
+mongock:
+  migration-scan-package: com.kvsinyuk.elasticsearch.adapter.out.mongo.migration
