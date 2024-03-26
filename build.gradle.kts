@@ -31,6 +31,9 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 	implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 
+	implementation("io.mongock:mongock-springboot-v3:5.4.0")
+	implementation("io.mongock:mongodb-springdata-v4-driver:5.4.0")
+
 	implementation("com.github.curious-odd-man:rgxgen:1.4")
 
 	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
