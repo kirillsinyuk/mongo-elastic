@@ -14,6 +14,6 @@ class SearchDealsUseCaseImpl(
     override fun searchDeals(command: SearchCommand) =
         when (command.databaseType) {
             "elasticsearch" -> elasticDealRepository.searchAll(command.search, command.page)
-            else -> mongoDealRepository.findAll(command.page)
+            else -> mongoDealRepository.searchDeal(command.search, command.page)
         }
 }
